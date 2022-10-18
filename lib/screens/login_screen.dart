@@ -2,6 +2,7 @@ import 'package:citycafe_app/screens/signup_Screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'forgetPasswordPage.dart';
 import 'home.dart';
 
 class Login_screen extends StatefulWidget {
@@ -64,16 +65,19 @@ class _Login_screenState extends State<Login_screen> {
                   ),
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  //forgot password screen
-                },
-                child: const Text(
-                  'Forgot Password',
-                  style: TextStyle(
-                      color: Color(0xffe46b10), fontStyle: FontStyle.italic),
-                ),
-              ),
+         Center(
+           child: GestureDetector(onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      return ForgetPassword();
+                    },));
+                  },
+                    child: const Text(
+                      'Forgot Password',
+                      style: TextStyle(
+                          color: Color(0xffe46b10), fontStyle: FontStyle.italic),
+                    ),
+                  ),
+         ),
               Container(
                   height: 50,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
