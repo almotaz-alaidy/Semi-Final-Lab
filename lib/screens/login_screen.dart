@@ -1,5 +1,8 @@
 import 'package:citycafe_app/screens/signup_Screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'home.dart';
 
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
@@ -78,9 +81,22 @@ class _Login_screenState extends State<Login_screen> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xffe46b10)),
                     child: const Text('Login'),
-                    onPressed: () {
-                      print(nameController.text);
-                      print(passwordController.text);
+                    onPressed: () async {
+                      try {
+                        var authin = FirebaseAuth.instance;
+                        UserCredential user =
+                            await authin.signInWithEmailAndPassword(
+                                email: nameController.text,
+                                password: passwordController.text);
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return Home();
+                          },
+                        ));
+                      } catch (e) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("sorry invalid email or pass")));
+                      }
                     },
                   )),
               Row(

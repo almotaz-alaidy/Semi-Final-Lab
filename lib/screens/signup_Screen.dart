@@ -42,97 +42,44 @@ class _SignUpPageState extends State<SignUpPage> {
 
   TextEditingController _passController = TextEditingController();
 
-  // Widget _entryField(String title, {bool isPassword = false}) {
-  //   return Container(
-  //     margin: EdgeInsets.symmetric(vertical: 10),
-  //     child: Column(
-  //       crossAxisAlignment: CrossAxisAlignment.start,
-  //       children: <Widget>[
-  //         Text(
-  //           title,
-  //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-  //         ),
-  //         SizedBox(
-  //           height: 10,
-  //         ),
-  //         TextField(
-  //             controller: _usernameController,
-  //             obscureText: isPassword,
-  //             decoration: InputDecoration(
-  //                 border: InputBorder.none,
-  //                 fillColor: Color(0xfff3f3f4),
-  //                 filled: true)),
-  //       ],
-  //     ),
-  //   );
-  // }
-
   Widget _submitButton() {
-    return
+    return GestureDetector(
+      onTap: () async {
+        try {
+          var authenticationobject = FirebaseAuth.instance;
 
-        // GestureDetector(
-        //     onTap: () {
-        //       // print("dddddd");
-        //       // setState(() {
-        //       () async {
-        //         try {
-        //           var authin = FirebaseAuth.instance;
-        //           UserCredential user = await authin.createUserWithEmailAndPassword(
-        //               email: _controller.text, password: _controller.text);
-        //           ScaffoldMessenger.of(context)
-        //               .showSnackBar(SnackBar(content: Text("its added")));
-        //         } catch (e) {
-        //           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        //               content: Text("sorry try to change the pass and the email")));
-        //         }
-        //       };
-        //       // });
-        //     },
-        // child:
-
-        Container(
-      width: MediaQuery.of(context).size.width,
-      padding: EdgeInsets.symmetric(vertical: 15),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-                color: Colors.grey.shade200,
-                offset: Offset(2, 4),
-                blurRadius: 5,
-                spreadRadius: 2)
-          ],
-          gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Color(0xfffbb448), Color(0xfff7892b)])),
-      child: ElevatedButton(
-        onPressed: () async {
-          try {
-            var authenticationobject = FirebaseAuth.instance;
-
-            UserCredential myUser =
-                await authenticationobject.createUserWithEmailAndPassword(
-                    email: _emailController.text,
-                    password: _passController.text);
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text("added successfully")));
-          } catch (e) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("sorry there is an error")));
-          }
-        },
+          UserCredential myUser =
+              await authenticationobject.createUserWithEmailAndPassword(
+                  email: _emailController.text, password: _passController.text);
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text("added successfully")));
+        } catch (e) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text("sorry there is an error")));
+        }
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: EdgeInsets.symmetric(vertical: 15),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5)),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: Offset(2, 4),
+                  blurRadius: 5,
+                  spreadRadius: 2)
+            ],
+            gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Color(0xfffbb448), Color(0xfff7892b)])),
         child: Text(
-          "Register Now",
+          'Register Now',
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
-
-      //  Text(
-      //   'Register Now',
-      //   style: TextStyle(fontSize: 20, color: Colors.white),
-      // ),
     );
   }
 
@@ -200,23 +147,6 @@ class _SignUpPageState extends State<SignUpPage> {
       ],
     );
   }
-
-  // Widget _emailPasswordWidget() {
-  //   return Column(
-  //     children: <Widget>[
-  //       _entryField(
-  //         "Username",
-  //       ),
-  //       _entryField(
-  //         "Email id",
-  //       ),
-  //       _entryField(
-  //         "Password",
-  //         isPassword: true,
-  //       ),
-  //     ],
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
