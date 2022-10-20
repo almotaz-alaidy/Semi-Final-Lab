@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'firbase classes.dart';
+import 'list.dart';
 
 class AddPage extends StatefulWidget {
   @override
@@ -74,42 +75,25 @@ class _AddPage extends State<AddPage> {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
 
     final SaveButon = Material(
+      color: Color(0xffe46b10),
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Theme.of(context).primaryColor,
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () async {
-          if (_formKey.currentState!.validate()) {
-            var response = await FirebaseCrud.addInfo(
-                name: _name.text,
-                age: _age.text,
-                course: _age.text,
-                studentId: _studentid.text);
+        onPressed: () {
+          CollectionReference studentRef =
+              FirebaseFirestore.instance.collection("student");
 
-            if (response.code != 200) {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      content: Text(response.message.toString()),
-                    );
-                  });
-            } else {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      content: Text(response.message.toString()),
-                    );
-                  });
-            }
-          }
+          studentRef.add({
+            'name': _name.text,
+            'age': _age.text,
+            'course': _course.text,
+            "studentid": _studentid.text
+          });
         },
         child: Text(
           "Save",
-          style: TextStyle(color: Theme.of(context).primaryColorLight),
           textAlign: TextAlign.center,
         ),
       ),
@@ -117,34 +101,50 @@ class _AddPage extends State<AddPage> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Form(
-              key: _formKey,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    nameField,
-                    const SizedBox(height: 25.0),
-                    ageField,
-                    const SizedBox(height: 35.0),
-                    studentIdField,
-                    const SizedBox(height: 35.0),
-                    courseField,
-                    const SizedBox(height: 35.0),
-                    SaveButon,
-                    const SizedBox(height: 15.0),
-                  ],
+      body: Container(
+        height: double.infinity,
+        color: Color.fromARGB(255, 230, 142, 75),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Form(
+                key: _formKey,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      nameField,
+                      const SizedBox(height: 25.0),
+                      ageField,
+                      const SizedBox(height: 35.0),
+                      studentIdField,
+                      const SizedBox(height: 35.0),
+                      courseField,
+                      const SizedBox(height: 35.0),
+                      SaveButon,
+                      const SizedBox(height: 15.0),
+                      ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xffe46b10)),
+                          label: Text("edit exist student or delet it"),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(
+                              builder: (context) {
+                                return ListPage();
+                              },
+                            ));
+                          },
+                          icon: Icon(Icons.edit)),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
