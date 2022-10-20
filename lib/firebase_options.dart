@@ -66,6 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '250209371050',
     projectId: 'similap-9de65',
     storageBucket: 'similap-9de65.appspot.com',
+    androidClientId: '250209371050-h3gqpr2dnq9a1krrltiqn5oeesv8ijbc.apps.googleusercontent.com',
     iosClientId: '250209371050-0blj950slmmtfha1c69j14pcg4umha6r.apps.googleusercontent.com',
     iosBundleId: 'com.example.citycafeApp',
   );
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '250209371050',
     projectId: 'similap-9de65',
     storageBucket: 'similap-9de65.appspot.com',
+    androidClientId: '250209371050-h3gqpr2dnq9a1krrltiqn5oeesv8ijbc.apps.googleusercontent.com',
     iosClientId: '250209371050-0blj950slmmtfha1c69j14pcg4umha6r.apps.googleusercontent.com',
     iosBundleId: 'com.example.citycafeApp',
   );

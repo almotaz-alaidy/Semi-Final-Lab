@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "250209371050-h3gqpr2dnq9a1krrltiqn5oeesv8ijbc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.citycafe_app",
+            "certificate_hash": "e02fff733889bd3e6d1ea9e486fa7daa15665798"
+          }
+        },
+        {
           "client_id": "250209371050-deu8csp1qbsha0rsubh90d2j7ff2d8fb.apps.googleusercontent.com",
           "client_type": 3
         }

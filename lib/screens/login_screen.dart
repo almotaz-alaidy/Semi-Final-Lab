@@ -2,11 +2,13 @@ import 'package:citycafe_app/screens/signup_Screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
-import '../wedget/google.dart';
+import '../components/google.dart';
+import 'firstscreenemail.dart';
 import 'forgetPasswordPage.dart';
-import 'home.dart';
+
+TextEditingController nameController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
 
 class Login_screen extends StatefulWidget {
   const Login_screen({Key? key}) : super(key: key);
@@ -16,9 +18,6 @@ class Login_screen extends StatefulWidget {
 }
 
 class _Login_screenState extends State<Login_screen> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +67,9 @@ class _Login_screenState extends State<Login_screen> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
               Center(
                 child: GestureDetector(
                   onTap: () {
@@ -83,6 +85,9 @@ class _Login_screenState extends State<Login_screen> {
                         color: Color(0xffe46b10), fontStyle: FontStyle.italic),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Container(
                   height: 50,
@@ -100,7 +105,7 @@ class _Login_screenState extends State<Login_screen> {
                                 password: passwordController.text);
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return Home();
+                            return FirstScreenEmail();
                           },
                         ));
                       } catch (e) {
@@ -109,6 +114,9 @@ class _Login_screenState extends State<Login_screen> {
                       }
                     },
                   )),
+              SizedBox(
+                height: 30,
+              ),
               Container(
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -118,9 +126,7 @@ class _Login_screenState extends State<Login_screen> {
                       backgroundColor: Color(0xffe46b10)),
                   label: const Text('Login with google'),
                   onPressed: () {
-                    final provider = Provider.of<GoogleLoginProvidder>(context,
-                        listen: false);
-                    provider.googlelogin();
+                    AuthServices().signInWithGoogle();
                   },
                 ),
               ),
