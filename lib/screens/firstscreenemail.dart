@@ -1,3 +1,5 @@
+import 'package:citycafe_app/screens/signup_Screen.dart';
+import 'package:citycafe_app/screens/userPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -58,15 +60,21 @@ class _FirstScreenEmailState extends State<FirstScreenEmail> {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xffe46b10)),
-                    onPressed: () {
-                      setState(() {
+                      onPressed: () {
+                      if (FirebaseAuth.instance.currentUser!.email.toString()=="osamaaloun@gmail.com") {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
                             return MainScreen();
                           },
                         ));
-                      });
-                    },
+                      }else{
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return user();
+                          },
+                        ));
+                      ;
+                     } },
                     child: Text("to continue please press "))
               ]),
         ));

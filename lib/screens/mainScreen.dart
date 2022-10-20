@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../components/add page.dart';
+import '../components/admin page.dart';
 import '../components/read page .dart';
 
 class MainScreen extends StatefulWidget {
