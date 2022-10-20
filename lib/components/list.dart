@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'add page.dart';
 import 'clss.dart';
 import 'edit page.dart';
 import 'firbase classes.dart';

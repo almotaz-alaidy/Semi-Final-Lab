@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'list.dart';
+import 'respons.dart';
 
 class AddPage extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class AddPage extends StatefulWidget {
     return _AddPage();
   }
 }
+
+Response response = Response();
 
 class _AddPage extends State<AddPage> {
   final _name = TextEditingController();
@@ -23,7 +26,7 @@ class _AddPage extends State<AddPage> {
   Widget build(BuildContext context) {
     final nameField = TextFormField(
         controller: _name,
-        autofocus: false,
+        autofocus: true,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
             return 'This field is required';
@@ -36,7 +39,7 @@ class _AddPage extends State<AddPage> {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
     final ageField = TextFormField(
         controller: _age,
-        autofocus: false,
+        autofocus: true,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
             return 'This field is required';
@@ -49,7 +52,7 @@ class _AddPage extends State<AddPage> {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
     final studentIdField = TextFormField(
         controller: _studentid,
-        autofocus: false,
+        autofocus: true,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
             return 'This field is required';
@@ -62,7 +65,7 @@ class _AddPage extends State<AddPage> {
                 OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))));
     final courseField = TextFormField(
         controller: _course,
-        autofocus: false,
+        autofocus: true,
         validator: (value) {
           if (value == null || value.trim().isEmpty) {
             return 'This field is required';
@@ -81,16 +84,27 @@ class _AddPage extends State<AddPage> {
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-        onPressed: () {
-          CollectionReference studentRef =
-              FirebaseFirestore.instance.collection("student");
+        onPressed: () async {
+          if (_formKey.currentState!.validate()) {
+            CollectionReference studentRef =
+                FirebaseFirestore.instance.collection("student");
 
-          studentRef.add({
-            'name': _name.text,
-            'age': _age.text,
-            'course': _course.text,
-            "studentid": _studentid.text
-          });
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  actions: [Text("added sucessfully")],
+                );
+              },
+            );
+
+            studentRef.add({
+              'name': _name.text,
+              'age': _age.text,
+              'course': _course.text,
+              "studentid": _studentid.text
+            });
+          }
         },
         child: Text(
           "Save",

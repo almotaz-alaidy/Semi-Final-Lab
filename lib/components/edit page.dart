@@ -1,11 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 import '../screens/mainScreen.dart';
 import 'clss.dart';
 import 'firbase classes.dart';
-import 'read page .dart';
 
 class EditPage extends StatefulWidget {
   final Tabels? info;
@@ -137,7 +134,7 @@ class _EditPage extends State<EditPage> {
               studentId: _studentid.text,
             );
 
-            if (response.code != 200) {
+            if (response.code == 200) {
               showDialog(
                   context: context,
                   builder: (context) {
