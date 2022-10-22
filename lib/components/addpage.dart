@@ -144,7 +144,7 @@ class _AddPage extends State<AddPage> {
                       ElevatedButton.icon(
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xffe46b10)),
-                          label: Text("edit exist student or delet it"),
+                          label: Text("edit exist student or delete it"),
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {

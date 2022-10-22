@@ -44,7 +44,7 @@ class _FirstScreenState extends State<FirstScreen> {
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: Text(
-                    "welcome to oure website",
+                    "welcome to oure application",
                     style: TextStyle(fontSize: 25, fontFamily: "Combo-Regular"),
                   ),
                 ),
@@ -66,21 +66,23 @@ class _FirstScreenState extends State<FirstScreen> {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xffe46b10)),
-                   onPressed: () {
-                      if (FirebaseAuth.instance.currentUser!.email.toString()=="osamaaloun@gmail.com") {
+                    onPressed: () {
+                      if (FirebaseAuth.instance.currentUser!.email.toString() ==
+                          "osamaaloun@gmail.com") {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
                             return MainScreen();
                           },
                         ));
-                      }else{
+                      } else {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
                             return user();
                           },
                         ));
-                      ;
-                     } },
+                        ;
+                      }
+                    },
                     child: Text("to continue please press "))
               ]),
         ));

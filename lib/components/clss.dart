@@ -13,3 +13,8 @@ class Tabels {
     this.course,
   });
 }
+
+class visiable2 {
+  bool? visiable4;
+  visiable2({this.visiable4});
+}

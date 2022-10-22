@@ -1,4 +1,3 @@
-import 'package:citycafe_app/screens/signup_Screen.dart';
 import 'package:citycafe_app/screens/userPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +27,13 @@ class _FirstScreenEmailState extends State<FirstScreenEmail> {
             ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xffe46b10)),
-                label: Text("logeut"),
+                label: Text("logout"),
                 onPressed: () {
-                  FirebaseAuth.instance.signOut();
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return Login_screen();
+                    },
+                  ));
                 },
                 icon: Icon(Icons.login_outlined))
           ],
@@ -44,7 +47,7 @@ class _FirstScreenEmailState extends State<FirstScreenEmail> {
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: Text(
-                    "welcome to oure website",
+                    "welcome to oure application",
                     style: TextStyle(fontSize: 25, fontFamily: "Combo-Regular"),
                   ),
                 ),
@@ -58,24 +61,27 @@ class _FirstScreenEmailState extends State<FirstScreenEmail> {
                   height: 20,
                 ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xffe46b10)),
-                      onPressed: () {
-                      if (FirebaseAuth.instance.currentUser!.email.toString()=="osamaaloun@gmail.com") {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return MainScreen();
-                          },
-                        ));
-                      }else{
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return user();
-                          },
-                        ));
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xffe46b10)),
+                  onPressed: () {
+                    if (FirebaseAuth.instance.currentUser!.email.toString() ==
+                        "similap3@gmail.com") {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return MainScreen();
+                        },
+                      ));
+                    } else {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return user();
+                        },
+                      ));
                       ;
-                     } },
-                    child: Text("to continue please press "))
+                    }
+                  },
+                  child: Text("to continue please press "),
+                ),
               ]),
         ));
   }
